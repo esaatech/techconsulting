@@ -149,7 +149,7 @@ const KidsAcademy = () => {
             rel="noopener noreferrer"
             className="hover:text-orange-300 transition-colors duration-300"
           >
-            SBTY Academy
+            SBTY Acedemy
           </a>
         </motion.h2>
         <motion.p
@@ -302,12 +302,15 @@ const KidsAcademy = () => {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          <motion.button
+          <motion.a
+            href="https://sbtyacedemy.com/assessment"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
-            className="btn btn-primary bg-orange-500 hover:bg-orange-600 transition-colors duration-300 text-white font-semibold py-2 px-4 rounded-sm shadow-md"
+            className="btn btn-primary bg-orange-500 hover:bg-orange-600 transition-colors duration-300 text-white font-semibold py-2 px-4 rounded-sm shadow-md inline-block text-center"
           >
             Take Assessment
-          </motion.button>
+          </motion.a>
           <motion.a
             href="https://sbtyacedemy.com/courses"
             target="_blank"
