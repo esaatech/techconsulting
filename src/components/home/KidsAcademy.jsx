@@ -8,11 +8,12 @@ const KidsAcademy = () => {
     {
       id: 1,
       title: "Coding Fundamentals",
-      age: "12-16 years",
-      duration: "8 weeks",
+      age: "10-14 years",
+      duration: "6 months",
       description:
         "Basic programming concepts using kid-friendly languages and tools.",
       topics: ["Scratch programming", "Python basics", "Game development"],
+      link: "https://sbtyacedemy.com/courses/intro-to-coding-9ef2d474-8ca3-49fc-8373-8c1863794377",
     },
     {
       id: 2,
@@ -25,12 +26,13 @@ const KidsAcademy = () => {
     },
     {
       id: 3,
-      title: "AI & Robotics",
-      age: "10-14 years",
-      duration: "6 weeks",
+      title: "Electronics and Robotics",
+      age: "12-16 years",
+      duration: "6 months",
       description:
-        "Introduction to artificial intelligence and robotics concepts for young learners.",
-      topics: ["AI basics", "Robotics fundamentals", "Machine learning intro"],
+        "Build your own robots from circuits to code. Learn electronics fundamentals and programming to create interactive bots.",
+      topics: ["Circuit basics", "Robotics fundamentals", "Programming bots"],
+      link: "https://sbtyacedemy.com/courses/robot-academy-from-circuits-to-code-build-your-own-bots-07e9d31f-c446-4190-8483-924df913792c",
     },
   ];
 
@@ -202,19 +204,38 @@ const KidsAcademy = () => {
                     </li>
                   ))}
                 </ul>
-                <motion.button
-                  whileHover={{ scale: 1.07 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-6 text-white font-semibold py-2 px-4 rounded-lg transition"
-                  style={{
-                    backgroundColor:
-                      "rgba(243, 155, 22, 0.55) backdrop-blur-lg shadow-md",
-                    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.25)",
-                    border: "1px solid rgba(255, 255, 255, 0.3)",
-                  }}
-                >
-                  Enroll Now
-                </motion.button>
+                {program.link ? (
+                  <motion.a
+                    href={program.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.07 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="mt-6 text-white font-semibold py-2 px-4 rounded-lg transition text-center block"
+                    style={{
+                      backgroundColor:
+                        "rgba(243, 155, 22, 0.55) backdrop-blur-lg shadow-md",
+                      boxShadow: "0 4px 20px rgba(0, 0, 0, 0.25)",
+                      border: "1px solid rgba(255, 255, 255, 0.3)",
+                    }}
+                  >
+                    Enroll Now
+                  </motion.a>
+                ) : (
+                  <motion.button
+                    whileHover={{ scale: 1.07 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="mt-6 text-white font-semibold py-2 px-4 rounded-lg transition"
+                    style={{
+                      backgroundColor:
+                        "rgba(243, 155, 22, 0.55) backdrop-blur-lg shadow-md",
+                      boxShadow: "0 4px 20px rgba(0, 0, 0, 0.25)",
+                      border: "1px solid rgba(255, 255, 255, 0.3)",
+                    }}
+                  >
+                    Enroll Now
+                  </motion.button>
+                )}
               </div>
             </div>
           </motion.div>
@@ -278,14 +299,17 @@ const KidsAcademy = () => {
             whileHover={{ scale: 1.05 }}
             className="btn btn-primary bg-orange-500 hover:bg-orange-600 transition-colors duration-300 text-white font-semibold py-2 px-4 rounded-sm shadow-md"
           >
-            Register Your Child
+            Take Assessment
           </motion.button>
-          <motion.button
+          <motion.a
+            href="https://sbtyacedemy.com/courses"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
-            className="btn btn-outline border border-2-white hover:bg-white/10 transition-colors duration-300 text-white font-semibold py-2 px-4 rounded-sm shadow-md"
+            className="btn btn-outline border border-2-white hover:bg-white/10 transition-colors duration-300 text-white font-semibold py-2 px-4 rounded-sm shadow-md inline-block text-center"
           >
-            Download Brochure
-          </motion.button>
+            View All Courses
+          </motion.a>
         </motion.div>
       </motion.div>
     </motion.section>
