@@ -143,7 +143,14 @@ const KidsAcademy = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Code Cubs
+          <a
+            href="https://sbtyacedemy.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-orange-300 transition-colors duration-300"
+          >
+            SBTY Academy
+          </a>
         </motion.h2>
         <motion.p
           className="description max-w-xl mx-auto"
