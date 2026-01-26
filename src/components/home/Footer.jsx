@@ -133,8 +133,9 @@ const Footer = ({ onOpenContactModal }) => {
         <div className="space-y-4">
           <h4 className="text-lg font-semibold text-tertiary">Contact</h4>
           <div className="text-sm text-gray-300 space-y-1">
-            <p>📧 info@techconsultingpro.com</p>
-            <p>📞 +1 (555) 123-4567</p>
+            <p>📧 info@sbtconsult.com</p>
+            <p>📞 +1 204 406 2247</p>
+            <p>📞 +1 343 843 3159</p>
             <p>📍 123 Business Ave, Tech City, TC 12345</p>
           </div>
           <button

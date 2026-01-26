@@ -102,13 +102,19 @@ const ContactModal = ({ isOpen, onClose, initialTab = "message" }) => {
               <span className="w-7 h-7 flex  items-center justify-center rounded-full bg-orange-500/70">
                 <FaPhoneAlt className="" />
               </span>
-              <span>+1 (555) 123-4567</span>
+              <span>+1 204 406 2247</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-7 h-7 flex  items-center justify-center rounded-full bg-orange-500/70">
+                <FaPhoneAlt className="" />
+              </span>
+              <span>+1 343 843 3159</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-7 h-7  flex items-center justify-center rounded-full bg-orange-500/70">
                 <MdEmail />
               </span>
-              <span>contact@esaaconsulting.com</span>
+              <span>info@sbtconsult.com</span>
             </div>
           </div>
         </div>

@@ -7,19 +7,17 @@ const KidsAcademy = () => {
   const programs = [
     {
       id: 1,
-      title: "Coding Fundamentals",
+      title: "Coding Programs",
       age: "10-14 years",
-      duration: "6 months",
       description:
         "Basic programming concepts using kid-friendly languages and tools.",
-      topics: ["Scratch programming", "Python basics", "Game development"],
-      link: "https://sbtyacedemy.com/courses/intro-to-coding-9ef2d474-8ca3-49fc-8373-8c1863794377",
+      topics: ["Scratch programming", "Intro to software development", "Mobile app development"],
+      link: "https://sbtyacedemy.com/programs/coding",
     },
     {
       id: 2,
       title: "Cyber Safety Basics",
       age: "8-12 years",
-      duration: "4 weeks",
       description:
         "Introduction to online safety, password security, and responsible internet use.",
       topics: ["Password creation", "Safe browsing", "Social media awareness"],
@@ -28,11 +26,10 @@ const KidsAcademy = () => {
       id: 3,
       title: "Electronics and Robotics",
       age: "12-16 years",
-      duration: "6 months",
       description:
         "Build your own robots from circuits to code. Learn electronics fundamentals and programming to create interactive bots.",
       topics: ["Circuit basics", "Robotics fundamentals", "Programming bots"],
-      link: "https://sbtyacedemy.com/courses/robot-academy-from-circuits-to-code-build-your-own-bots-07e9d31f-c446-4190-8483-924df913792c",
+      link: "https://sbtyacademy.com/courses/robot-academy-from-circuits-to-code-build-your-own-bots-07e9d31f-c446-4190-8483-924df913792c",
     },
   ];
 
@@ -144,7 +141,7 @@ const KidsAcademy = () => {
           transition={{ duration: 0.8 }}
         >
           <a
-            href="https://sbtyacedemy.com"
+            href="https://sbtyacademy.com"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-orange-300 transition-colors duration-300"
@@ -195,9 +192,6 @@ const KidsAcademy = () => {
                 <div className="text-sm text-gray-50 mb-4 flex flex-wrap gap-2">
                   <span className="bg-orange-400/50 backdrop-blur-lg shadow-md px-3 py-1 rounded-sm">
                     {program.age}
-                  </span>
-                  <span className="bg-blue-400/50 backdrop-blur-lg shadow-md px-3 py-1 rounded-sm">
-                    {program.duration}
                   </span>
                 </div>
                 <p className="text-sm text-gray-300 mb-4">
@@ -303,7 +297,7 @@ const KidsAcademy = () => {
           transition={{ delay: 0.6 }}
         >
           <motion.a
-            href="https://sbtyacedemy.com/assessment"
+            href="https://sbtyacademy.com/assessment"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
@@ -312,7 +306,7 @@ const KidsAcademy = () => {
             Take Assessment
           </motion.a>
           <motion.a
-            href="https://sbtyacedemy.com/courses"
+            href="https://sbtyacademy.com/courses"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
