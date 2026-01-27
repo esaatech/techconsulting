@@ -136,7 +136,7 @@ const Footer = ({ onOpenContactModal }) => {
             <p>📧 info@sbtconsult.com</p>
             <p>📞 +1 204 406 2247</p>
             <p>📞 +1 343 843 3159</p>
-            <p>📍 123 Business Ave, Tech City, TC 12345</p>
+            <p>📍 1029L Manitoba Avenue, Mn Canada</p>
           </div>
           <button
             className="mt-4 bg-orange-500/70 hover:bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg transition shadow-md"

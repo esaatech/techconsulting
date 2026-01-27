@@ -8,16 +8,16 @@ const KidsAcademy = () => {
     {
       id: 1,
       title: "Coding Programs",
-      age: "10-14 years",
+      age: "7-18",
       description:
         "Basic programming concepts using kid-friendly languages and tools.",
       topics: ["Scratch programming", "Intro to software development", "Mobile app development"],
-      link: "https://sbtyacedemy.com/programs/coding",
+      link: "https://sbtyacademy.com/programs/coding",
     },
     {
       id: 2,
       title: "Cyber Safety Basics",
-      age: "8-12 years",
+      age: "12-18",
       description:
         "Introduction to online safety, password security, and responsible internet use.",
       topics: ["Password creation", "Safe browsing", "Social media awareness"],
@@ -25,11 +25,11 @@ const KidsAcademy = () => {
     {
       id: 3,
       title: "Electronics and Robotics",
-      age: "12-16 years",
+      age: "12-18",
       description:
         "Build your own robots from circuits to code. Learn electronics fundamentals and programming to create interactive bots.",
       topics: ["Circuit basics", "Robotics fundamentals", "Programming bots"],
-      link: "https://sbtyacademy.com/courses/robot-academy-from-circuits-to-code-build-your-own-bots-07e9d31f-c446-4190-8483-924df913792c",
+      link: "https://www.sbtyacademy.com/programs/electronics-and-robotics",
     },
   ];
 
