@@ -53,7 +53,12 @@ const HeroSection = () => {
               >
                 BOOK A FREE CONSULTATION
               </button>
-              <button className="bg-white text-navy-700 w-full lg:w-fit text-center px-3 md:px-6 py-3 rounded-sm hover:bg-blue-100 transition-colors duration-300 text-lg font-semibold">
+              <button className="bg-white w-full lg:w-fit text-center px-3 md:px-6 py-3 rounded-sm hover:bg-blue-100 transition-colors duration-300 text-lg font-bold"
+                style={{ 
+                  color: '#1E40AF',
+                  fontWeight: '700'
+                }}
+              >
                 ASSESS YOUR CYBER READINESS
               </button>
             </div>

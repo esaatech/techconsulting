@@ -69,7 +69,7 @@ const Footer = ({ onOpenContactModal }) => {
         {/* About */}
         <div className="space-y-4">
           <h3 className="text-xl font-bold text-secondary">
-            Tech Consulting Pro
+            SBTCONSULT
           </h3>
           <p className="text-sm text-gray-300">
             Your partner in cyber readiness, security, and AI transformation. We
@@ -79,7 +79,7 @@ const Footer = ({ onOpenContactModal }) => {
           <div className="flex gap-4 text-sm text-orange-400">
             <a href="#">LinkedIn</a>
             <a href="#">Twitter</a>
-            <a href="#">Email</a>
+            <a href="mailto:info@sbtconsult.com">Email</a>
           </div>
         </div>
 
@@ -136,7 +136,7 @@ const Footer = ({ onOpenContactModal }) => {
             <p>📧 info@sbtconsult.com</p>
             <p>📞 +1 204 406 2247</p>
             <p>📞 +1 343 843 3159</p>
-            <p>📍 1029L Manitoba Avenue, Mn Canada</p>
+            <p>📍 1029L Manitoba Avenue, MB Canada</p>
           </div>
           <button
             className="mt-4 bg-orange-500/70 hover:bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg transition shadow-md"
@@ -190,7 +190,7 @@ const Footer = ({ onOpenContactModal }) => {
 
       {/* Bottom */}
       <div className="border-t border-white/10 mt-12 pt-6 text-center text-sm text-gray-400">
-        <p>&copy; 2024 Tech Consulting Pro. All rights reserved.</p>
+        <p>&copy; 2024 sbtconsult. All rights reserved.</p>
         <div className="flex gap-4 justify-center mt-2">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
