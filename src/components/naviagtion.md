@@ -51,7 +51,7 @@ const trainingItems = [
 { id: "devops", label: "Professional DevOps Engineer Training" },
 {
 id: "kids-academy",
-label: "Code Cubs - Young Learners Growing Coding Skills",
+label: "SBTY Academy Young Learners Growing Coding Skills",
 },
 { id: "project-management", label: "IT Project Management Training" },
 { id: "scrum-master", label: "Scrum Master Training" },

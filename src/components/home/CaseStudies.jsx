@@ -40,17 +40,17 @@ const CaseStudies = () => {
     {
       id: 3,
       category: "AI Implementation",
-      title: "Manufacturing Process Optimization",
+      title: "Intelligent Learning Management System",
       challenge:
-        "A manufacturing company needed to automate quality control and reduce production errors.",
+        "An educational institution needed to modernize their LMS platform to reduce teacher workload and personalize student learning experiences.",
       solution:
-        "Implemented AI-powered visual inspection systems and predictive maintenance algorithms.",
+        "Developed and integrated an AI-powered solution directly into their educational platform that automates quiz and assignment generation, provides intelligent grading capabilities, and adapts learning materials to each student's preferred learning pattern.",
       outcome:
-        "Increased production efficiency by 40% and reduced defects by 60%.",
+        "Reduced teacher administrative time by 65%, improved student engagement by 50%, and increased learning outcomes through personalized content delivery.",
       metrics: [
-        "40% efficiency gain",
-        "60% defect reduction",
-        "24/7 monitoring",
+        "65% reduction in grading time",
+        "50% increase in student engagement",
+        "Personalized learning paths for all students",
       ],
     },
   ];
@@ -169,20 +169,6 @@ const CaseStudies = () => {
                     </ul>
                   </div>
                 </div>
-
-                {/* CTA */}
-                <button
-                  className="mt-6 text-white font-semibold py-2 px-4 rounded-lg transition hover:scale-105 hover:bg-orange-500"
-                  style={{
-                    backgroundColor:
-                      "rgba(243, 155, 22, 0.55) backdrop-blur-lg shadow-md ",
-                    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.25)",
-                    border: "1px solid rgba(255, 255, 255, 0.3)",
-                    textShadow: "0px 0px 6px rgba(0,0,0,0.4)",
-                  }}
-                >
-                  Read Full Case Study
-                </button>
               </div>
             </div>
           </motion.div>
