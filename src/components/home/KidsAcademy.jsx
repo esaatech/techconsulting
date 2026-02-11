@@ -12,7 +12,7 @@ const KidsAcademy = () => {
       description:
         "Basic programming concepts using kid-friendly languages and tools.",
       topics: ["Scratch programming", "Intro to software development", "Mobile app development"],
-      link: "https://sbtyacademy.com/programs/coding",
+      link: "https://www.sbtyacedemy.com/programs/coding",
     },
     {
       id: 2,
