@@ -47,7 +47,7 @@ function CoreServices() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        {services.map((service, i) => (
+        {services.filter((service) => !service.hidden).map((service, i) => (
           <motion.div
             key={i}
             className="relative rounded-2xl overflow-hidden group"

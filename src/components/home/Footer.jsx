@@ -88,13 +88,13 @@ const Footer = ({ onOpenContactModal }) => {
           <h4 className="text-lg font-semibold mb-4 text-tertiary">Services</h4>
           <ul className="space-y-2 text-sm text-gray-300">
             <li>
-              <a href="#">Cyber Attack Readiness</a>
+              <a href="/services/cyber-attack-readiness">Cyber Attack Readiness</a>
             </li>
             <li>
-              <a href="#">Security Consulting</a>
+              <a href="/services/managed-it">Managed IT Services</a>
             </li>
             <li>
-              <a href="#">AI Implementation</a>
+              <a href="/services/ai-implementation">AI Implementation</a>
             </li>
             <li>
               <a href="#">IT Consulting</a>

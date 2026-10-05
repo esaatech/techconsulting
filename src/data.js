@@ -24,6 +24,22 @@ export const services = [
     },
   },
   {
+    title: "Managed IT Services",
+    description:
+      "End-to-end managed IT — support, security, cloud, and infrastructure under one roof.",
+    points: [
+      "24/7 monitoring & helpdesk support",
+      "Cybersecurity, cloud & network management",
+      "Backup, continuity & disaster recovery",
+    ],
+    img: "../../../managedItService.jpg",
+    link: "/services/managed-it",
+    gradient: {
+      colors: ["#00D8FFE6", "#FF6E14B3", "#0A3D62CC"],
+    },
+  },
+  // Hidden for now — keep in code for easy restore later
+  {
     title: "Cyber Security Consulting",
     description: "Secure your systems with tailored consulting strategies.",
     points: [
@@ -36,6 +52,7 @@ export const services = [
     gradient: {
       colors: ["#00D8FFE6", "#FF6E14B3", "#0A3D62CC"],
     },
+    hidden: true,
   },
   {
     title: "AI Implementation",
