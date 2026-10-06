@@ -46,7 +46,14 @@ const STEPS = [
   { id: 3, title: "Challenges & Priorities" },
   { id: 4, title: "Security & Continuity" },
   { id: 5, title: "Goals & Timeline" },
+  { id: 6, title: "Review & Submit" },
 ];
+
+const displayValue = (value) => {
+  if (Array.isArray(value)) return value.length ? value.join(", ") : "—";
+  if (typeof value === "string" && value.trim()) return value.trim();
+  return "—";
+};
 
 const PLATFORM_OPTIONS = [
   "Microsoft 365",
@@ -116,6 +123,13 @@ function Discovery() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Enter key on earlier steps should advance, not submit
+    if (step < STEPS.length) {
+      nextStep();
+      return;
+    }
+
     if (!validateStep()) return;
 
     setIsSubmitting(true);
@@ -638,6 +652,111 @@ function Discovery() {
                     </div>
                   </>
                 )}
+
+                {step === 6 && (
+                  <>
+                    <h2 className={sectionTitleClass}>6. Review your answers</h2>
+                    <p className={hintClass}>
+                      Check everything below, then submit. Use Edit to go back and change a section.
+                    </p>
+
+                    {[
+                      {
+                        stepId: 1,
+                        title: "Company & Contact",
+                        rows: [
+                          ["Company name", formData.companyName],
+                          ["Primary contact", formData.primaryContact],
+                          ["Role / title", formData.role],
+                          ["Email", formData.email],
+                          ["Phone", formData.phone],
+                          ["Industry", formData.industry],
+                          ["Website", formData.website],
+                          ["Locations", formData.locations],
+                        ],
+                      },
+                      {
+                        stepId: 2,
+                        title: "Organization & IT Setup",
+                        rows: [
+                          ["Staff / users", formData.staffSize],
+                          ["Physical locations", formData.physicalLocations],
+                          ["Work style", formData.workStyle],
+                          ["IT management", formData.itManagement],
+                          ["Devices", formData.deviceCount],
+                          ["Servers", formData.servers],
+                          ["Platforms", formData.platforms],
+                          ["Key applications", formData.keyApplications],
+                        ],
+                      },
+                      {
+                        stepId: 3,
+                        title: "Challenges & Priorities",
+                        rows: [
+                          ["Challenges", formData.challenges],
+                          ["Recent incidents", formData.recentIncidents],
+                          ["Priorities", formData.priorities],
+                        ],
+                      },
+                      {
+                        stepId: 4,
+                        title: "Security & Continuity",
+                        rows: [
+                          ["Antivirus", formData.antivirus],
+                          ["MFA", formData.mfa],
+                          ["Email security", formData.emailSecurity],
+                          ["Regular backups", formData.backups],
+                          ["Compliance", formData.compliance],
+                          ["Backup details", formData.backupDetails],
+                          ["Downtime tolerance", formData.downtimeTolerance],
+                          ["Disaster recovery / BCP", formData.disasterRecoveryPlan],
+                        ],
+                      },
+                      {
+                        stepId: 5,
+                        title: "Goals & Timeline",
+                        rows: [
+                          ["Service level", formData.serviceLevel],
+                          ["Goals", formData.goals],
+                          ["Driving project", formData.drivingProject],
+                          ["Budget", formData.budget],
+                          ["Timeline", formData.timeline],
+                          ["Decision makers", formData.decisionMakers],
+                          ["Anything else", formData.anythingElse],
+                        ],
+                      },
+                    ].map((section) => (
+                      <div
+                        key={section.stepId}
+                        className="rounded-xl border border-white/15 bg-white/5 p-4 mb-4"
+                      >
+                        <div className="flex items-center justify-between gap-3 mb-3">
+                          <h3 className="font-semibold text-orange-300">{section.title}</h3>
+                          <button
+                            type="button"
+                            onClick={() => setStep(section.stepId)}
+                            className="text-sm text-orange-400 hover:text-orange-300 underline"
+                          >
+                            Edit
+                          </button>
+                        </div>
+                        <dl className="space-y-2">
+                          {section.rows.map(([label, value]) => (
+                            <div
+                              key={label}
+                              className="grid grid-cols-1 sm:grid-cols-3 gap-1 text-sm"
+                            >
+                              <dt className="text-gray-400">{label}</dt>
+                              <dd className="sm:col-span-2 text-gray-100 whitespace-pre-wrap">
+                                {displayValue(value)}
+                              </dd>
+                            </div>
+                          ))}
+                        </dl>
+                      </div>
+                    ))}
+                  </>
+                )}
               </motion.div>
             </AnimatePresence>
 
@@ -666,7 +785,7 @@ function Discovery() {
                   onClick={nextStep}
                   className="px-5 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 font-semibold transition"
                 >
-                  Continue
+                  Next: {STEPS[step].title}
                 </button>
               ) : (
                 <button
