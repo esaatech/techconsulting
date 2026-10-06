@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { submitDiscoveryForm } from "../services/discoveryService";
 
 const INITIAL_FORM = {
@@ -103,6 +103,9 @@ function Discovery() {
     });
   };
 
+  const FORM_STEPS = 5; // steps 1-5 collect answers; step 6 is review only
+  const isReviewStep = step === 6;
+
   const validateStep = () => {
     if (step === 1) {
       if (!formData.companyName.trim() || !formData.primaryContact.trim() || !formData.email.trim()) {
@@ -121,15 +124,16 @@ function Discovery() {
 
   const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
 
-  const handleSubmit = async (e) => {
+  // Never submit via native form submit / Enter — only the review button submits
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-
-    // Enter key on earlier steps should advance, not submit
-    if (step < STEPS.length) {
+    if (!isReviewStep) {
       nextStep();
-      return;
     }
+  };
 
+  const handleFinalSubmit = async () => {
+    if (!isReviewStep) return;
     if (!validateStep()) return;
 
     setIsSubmitting(true);
@@ -260,18 +264,10 @@ function Discovery() {
           </motion.div>
         ) : (
           <form
-            onSubmit={handleSubmit}
+            onSubmit={handleFormSubmit}
             className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 md:p-8 shadow-lg shadow-black/40"
           >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={step}
-                initial={{ opacity: 0, x: 24 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -24 }}
-                transition={{ duration: 0.25 }}
-                className="space-y-5"
-              >
+            <div className="space-y-5">
                 {step === 1 && (
                   <>
                     <h2 className={sectionTitleClass}>1. Company & Contact</h2>
@@ -757,8 +753,7 @@ function Discovery() {
                     ))}
                   </>
                 )}
-              </motion.div>
-            </AnimatePresence>
+            </div>
 
             {errorMessage && (
               <p className="mt-4 text-sm text-red-400">{errorMessage}</p>
@@ -779,17 +774,20 @@ function Discovery() {
                 Back
               </button>
 
-              {step < STEPS.length ? (
+              {!isReviewStep ? (
                 <button
                   type="button"
                   onClick={nextStep}
                   className="px-5 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 font-semibold transition"
                 >
-                  Next: {STEPS[step].title}
+                  {step === FORM_STEPS
+                    ? "Review your answers"
+                    : `Next: ${STEPS[step].title}`}
                 </button>
               ) : (
                 <button
-                  type="submit"
+                  type="button"
+                  onClick={handleFinalSubmit}
                   disabled={isSubmitting}
                   className="px-5 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 font-semibold transition disabled:opacity-60"
                 >
