@@ -105,6 +105,90 @@ exports.onContactCreated = onDocumentCreated(
   }
 );
 
+// Discovery questionnaire handler
+exports.onDiscoveryCreated = onDocumentCreated(
+  {
+    document: 'discoveries/{docId}',
+    region: 'us-central1',
+    secrets: [SLACK_WEBHOOK_URL],
+    retry: true,
+  },
+  async (event) => {
+    const snap = event.data;
+    if (!snap) return;
+
+    const discoveryId = snap.id;
+    const data = snap.data();
+
+    if (data?.delivery?.deliveredAt) {
+      logger.info('Discovery already delivered, skipping', { discoveryId });
+      return;
+    }
+
+    const company = data?.companyName || 'Unknown company';
+    const contact = data?.primaryContact || 'Unknown';
+    const email = data?.email || 'No email';
+    const phone = data?.phone || '—';
+    const industry = data?.industry || '—';
+    const staffSize = data?.staffSize || '—';
+    const serviceLevel = data?.serviceLevel || '—';
+    const timeline = data?.timeline || '—';
+    const challenges = (data?.challenges || '').toString().slice(0, 1500);
+    const goals = (data?.goals || '').toString().slice(0, 1500);
+
+    const payload = {
+      text: `New IT Discovery submission from ${company}`,
+      blocks: [
+        { type: 'header', text: { type: 'plain_text', text: 'New IT Discovery Questionnaire' } },
+        { type: 'section', fields: [
+          { type: 'mrkdwn', text: `*Company*\n${company}` },
+          { type: 'mrkdwn', text: `*Contact*\n${contact}` },
+          { type: 'mrkdwn', text: `*Email*\n${email}` },
+          { type: 'mrkdwn', text: `*Phone*\n${phone}` },
+          { type: 'mrkdwn', text: `*Industry*\n${industry}` },
+          { type: 'mrkdwn', text: `*Staff*\n${staffSize}` },
+          { type: 'mrkdwn', text: `*Service level*\n${serviceLevel}` },
+          { type: 'mrkdwn', text: `*Timeline*\n${timeline}` },
+        ]},
+        { type: 'section', text: { type: 'mrkdwn', text: `*Challenges*\n${challenges || '—'}` } },
+        { type: 'section', text: { type: 'mrkdwn', text: `*Goals*\n${goals || '—'}` } },
+        { type: 'context', elements: [ { type: 'mrkdwn', text: `Doc ID: ${discoveryId}` } ] },
+      ],
+    };
+
+    try {
+      const webhookUrl = await resolveSlackWebhookUrl();
+      const resp = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const text = await resp.text();
+      if (!resp.ok) {
+        throw new Error(`Slack webhook failed (${resp.status}): ${text}`);
+      }
+
+      await db.doc(`discoveries/${discoveryId}`).set({
+        status: 'delivered',
+        delivery: { deliveredAt: new Date().toISOString() },
+      }, { merge: true });
+
+      logger.info('Discovery delivered to Slack', { discoveryId });
+    } catch (err) {
+      logger.error('Discovery Slack error', { error: String(err), discoveryId });
+      await db.doc(`discoveries/${discoveryId}`).set({
+        status: 'failed',
+        delivery: {
+          attempts: (data?.delivery?.attempts || 0) + 1,
+          lastAttemptAt: new Date().toISOString(),
+          error: String(err?.message || err),
+        },
+      }, { merge: true });
+      throw err;
+    }
+  }
+);
+
 // Newsletter subscription handler
 exports.onNewsletterSubscription = onDocumentCreated(
   {

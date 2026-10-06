@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import heroImage from "/public/managedItPageHero.jpeg";
 import { IoIosCheckmarkCircle } from "react-icons/io";
@@ -146,7 +147,9 @@ function ManagedItServices() {
             </p>
             <div className="buttons mt-16 w-10/12 md:w-full mx-auto flex flex-col md:flex-col lg:flex-row sm:flex-row items-center gap-4 justify-center">
               <button className="primaryButton">BOOK A FREE CONSULTATION</button>
-              <button className="secondaryButton">START DISCOVERY</button>
+              <Link to="/discovery" className="secondaryButton">
+                START DISCOVERY
+              </Link>
             </div>
           </motion.div>
         </div>

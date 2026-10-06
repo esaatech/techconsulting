@@ -13,6 +13,12 @@ service cloud.firestore {
       allow create: if true;
       allow read, update: if false; // Only functions can read/update
     }
+
+    // Allow anyone to create discovery questionnaire submissions
+    match /discoveries/{discoveryId} {
+      allow create: if true;
+      allow read, update: if false; // Only functions can read/update
+    }
     
     // Protect config documents - only functions can access
     match /config/{configId} {

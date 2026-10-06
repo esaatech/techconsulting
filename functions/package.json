@@ -1,1 +1,1 @@
-{"name":"tech-consulting-functions","description":"Cloud Functions for contact-to-Slack bridge","main":"index.js","type":"commonjs","engines":{"node":"20"},"dependencies":{"firebase-admin":"^12.5.0","firebase-functions":"^5.1.1"}}
+{"name":"tech-consulting-functions","description":"Cloud Functions for contact-to-Slack bridge","main":"index.js","type":"commonjs","engines":{"node":"22"},"dependencies":{"firebase-admin":"^12.5.0","firebase-functions":"^5.1.1"}}
