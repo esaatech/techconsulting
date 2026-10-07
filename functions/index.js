@@ -189,6 +189,82 @@ exports.onDiscoveryCreated = onDocumentCreated(
   }
 );
 
+// Cyber readiness assessment handler
+exports.onCyberAssessmentCreated = onDocumentCreated(
+  {
+    document: 'cyber-assessments/{docId}',
+    region: 'us-central1',
+    secrets: [SLACK_WEBHOOK_URL],
+    retry: true,
+  },
+  async (event) => {
+    const snap = event.data;
+    if (!snap) return;
+
+    const assessmentId = snap.id;
+    const data = snap.data();
+
+    if (data?.delivery?.deliveredAt) {
+      logger.info('Cyber assessment already delivered, skipping', { assessmentId });
+      return;
+    }
+
+    const company = data?.companyName || 'Unknown company';
+    const name = data?.name || 'Unknown';
+    const email = data?.email || 'No email';
+    const phone = data?.phone || '—';
+    const scorePercent = data?.scorePercent ?? '—';
+    const scoreLevel = data?.scoreLevel || '—';
+
+    const payload = {
+      text: `New cyber readiness assessment from ${company}`,
+      blocks: [
+        { type: 'header', text: { type: 'plain_text', text: 'New Cyber Readiness Assessment' } },
+        { type: 'section', fields: [
+          { type: 'mrkdwn', text: `*Company*\n${company}` },
+          { type: 'mrkdwn', text: `*Contact*\n${name}` },
+          { type: 'mrkdwn', text: `*Email*\n${email}` },
+          { type: 'mrkdwn', text: `*Phone*\n${phone}` },
+          { type: 'mrkdwn', text: `*Score*\n${scorePercent}%` },
+          { type: 'mrkdwn', text: `*Level*\n${scoreLevel}` },
+        ]},
+        { type: 'context', elements: [ { type: 'mrkdwn', text: `Doc ID: ${assessmentId}` } ] },
+      ],
+    };
+
+    try {
+      const webhookUrl = await resolveSlackWebhookUrl();
+      const resp = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const text = await resp.text();
+      if (!resp.ok) {
+        throw new Error(`Slack webhook failed (${resp.status}): ${text}`);
+      }
+
+      await db.doc(`cyber-assessments/${assessmentId}`).set({
+        status: 'delivered',
+        delivery: { deliveredAt: new Date().toISOString() },
+      }, { merge: true });
+
+      logger.info('Cyber assessment delivered to Slack', { assessmentId });
+    } catch (err) {
+      logger.error('Cyber assessment Slack error', { error: String(err), assessmentId });
+      await db.doc(`cyber-assessments/${assessmentId}`).set({
+        status: 'failed',
+        delivery: {
+          attempts: (data?.delivery?.attempts || 0) + 1,
+          lastAttemptAt: new Date().toISOString(),
+          error: String(err?.message || err),
+        },
+      }, { merge: true });
+      throw err;
+    }
+  }
+);
+
 // Newsletter subscription handler
 exports.onNewsletterSubscription = onDocumentCreated(
   {

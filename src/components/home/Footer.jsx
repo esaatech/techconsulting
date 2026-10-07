@@ -76,9 +76,14 @@ const Footer = ({ onOpenContactModal }) => {
             help organizations protect their assets and accelerate their digital
             journey.
           </p>
+          {/* Social links hidden for now — restore when profiles are ready
           <div className="flex gap-4 text-sm text-orange-400">
             <a href="#">LinkedIn</a>
             <a href="#">Twitter</a>
+            <a href="mailto:info@sbtconsult.com">Email</a>
+          </div>
+          */}
+          <div className="flex gap-4 text-sm text-orange-400">
             <a href="mailto:info@sbtconsult.com">Email</a>
           </div>
         </div>

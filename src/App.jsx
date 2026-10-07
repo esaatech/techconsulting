@@ -16,6 +16,7 @@ import CyberAttackReadiness from "./pages/CyberAttackReadiness";
 import CyberSecurityConsulting from "./pages/CyberSecurityConsulting";
 import ManagedItServices from "./pages/ManagedItServices";
 import Discovery from "./pages/Discovery";
+import CyberAssessment from "./pages/CyberAssessment";
 import AiImplementation from "./pages/AiImplementation";
 import ItConsulting from "./pages/ItConsulting";
 import ProjectManagementTraining from "./pages/ProjectManagementTraining";
@@ -52,6 +53,7 @@ function App() {
         />
         <Route path="/services/managed-it" element={<ManagedItServices />} />
         <Route path="/discovery" element={<Discovery />} />
+        <Route path="/cyber-assessment" element={<CyberAssessment />} />
         <Route
           path="/services/ai-implementation"
           element={<AiImplementation />}

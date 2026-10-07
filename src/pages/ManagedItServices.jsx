@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import heroImage from "/public/managedItPageHero.jpeg";
@@ -9,8 +9,13 @@ import { IoCloudUpload } from "react-icons/io5";
 import { FaNetworkWired, FaServer } from "react-icons/fa";
 import { HiOutlineDocumentSearch } from "react-icons/hi";
 import { TbDeviceDesktopAnalytics } from "react-icons/tb";
+import ContactModal from "../components/ContactModal";
 
 function ManagedItServices() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const openConsultation = () => setIsContactModalOpen(true);
+
   const benefits = [
     {
       item: "Proactive Support — we monitor and maintain your systems around the clock to prevent downtime",
@@ -146,7 +151,13 @@ function ManagedItServices() {
               business while we keep the technology running.
             </p>
             <div className="buttons mt-16 w-10/12 md:w-full mx-auto flex flex-col md:flex-col lg:flex-row sm:flex-row items-center gap-4 justify-center">
-              <button className="primaryButton">BOOK A FREE CONSULTATION</button>
+              <button
+                type="button"
+                className="primaryButton"
+                onClick={openConsultation}
+              >
+                BOOK A FREE CONSULTATION
+              </button>
               <Link to="/discovery" className="secondaryButton">
                 START DISCOVERY
               </Link>
@@ -155,8 +166,8 @@ function ManagedItServices() {
         </div>
       </div>
 
-      {/* WHY SECTION */}
-      <div className="sectionWhy w-full bg-[#020814] text-white py-4 lg:py-16">
+      {/* WHY SECTION — lighter navy so it separates from the hero overlay */}
+      <div className="sectionWhy w-full bg-[#12263a] text-white py-4 lg:py-16">
         <div className="whySectionWrapper w-11/12 px-4 lg:px-16 mx-auto">
           <div className="whyContent py-4 lg:py-24 flex flex-col lg:flex-row gap-12">
             <motion.div
@@ -214,7 +225,7 @@ function ManagedItServices() {
       </div>
 
       {/* SERVICES */}
-      <div className="processSection w-full bg-[#020814] text-white py-4 lg:py-16">
+      <div className="processSection w-full bg-[#0a1628] text-white py-4 lg:py-16">
         <div className="processWrapper w-11/12 px-4 lg:px-16 mx-auto">
           <div className="processContent w-full justify-center flex flex-col gap-12 mx-auto">
             <div className="titleContent mx-auto">
@@ -267,7 +278,7 @@ function ManagedItServices() {
       </div>
 
       {/* ENGAGEMENT MODELS */}
-      <div className="w-full bg-[#020814] text-white py-4 lg:py-16">
+      <div className="w-full bg-[#06101f] text-white py-4 lg:py-16">
         <div className="w-11/12 px-4 lg:px-16 mx-auto">
           <div className="titleContent mx-auto mb-12">
             <h2 className="text-2xl text-center lg:text-4xl font-semibold mb-3">
@@ -302,7 +313,7 @@ function ManagedItServices() {
       </div>
 
       {/* HOW WE ENGAGE */}
-      <div className="w-full bg-[#020814] text-white py-4 lg:py-16">
+      <div className="w-full bg-[#0b1c30] text-white py-4 lg:py-16">
         <div className="w-11/12 px-4 lg:px-16 mx-auto">
           <div className="titleContent mx-auto mb-12">
             <h2 className="text-2xl text-center lg:text-4xl font-semibold mb-3">
@@ -351,12 +362,22 @@ function ManagedItServices() {
               Let&apos;s talk about your environment and show you how managed IT
               can protect, support, and scale with your business.
             </p>
-            <button className="mt-6 bg-orange-500 px-3 py-3 rounded-sm mx-auto text-lg w-[300px] hover:bg-orange-600 transition-300">
+            <button
+              type="button"
+              onClick={openConsultation}
+              className="mt-6 bg-orange-500 px-3 py-3 rounded-sm mx-auto text-lg w-[300px] hover:bg-orange-600 transition-300"
+            >
               SCHEDULE A CONSULTATION
             </button>
           </div>
         </motion.div>
       </div>
+
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        initialTab="appointment"
+      />
     </div>
   );
 }

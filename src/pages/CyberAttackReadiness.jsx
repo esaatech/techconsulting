@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import heroImage from "/public/cyberReadinessPageHero.jpeg";
 import { TbFolderSearch } from "react-icons/tb";
@@ -6,8 +7,13 @@ import { FaChess } from "react-icons/fa";
 import { FaShieldVirus } from "react-icons/fa";
 import { GoVideo } from "react-icons/go";
 import { RiFolderSettingsFill } from "react-icons/ri";
+import ContactModal from "../components/ContactModal";
 
 function CyberAttackReadiness() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const openConsultation = () => setIsContactModalOpen(true);
+
   const process = [
     {
       title: "Risk Assessment & Vulnerability Scans",
@@ -69,8 +75,14 @@ function CyberAttackReadiness() {
               response strategies, and resilience against cyber threats.
             </p>
             <div className="buttons mt-16 w-10/12 md:w-full mx-auto flex flex-col md:flex-col lg:flex-row sm:flex-row items-center gap-4 justify-center">
-              <button className="primaryButton ">START YOUR ASSESSMENT</button>
-              <button className="secondaryButton">
+              <Link to="/cyber-assessment" className="primaryButton">
+                START YOUR ASSESSMENT
+              </Link>
+              <button
+                type="button"
+                className="secondaryButton"
+                onClick={openConsultation}
+              >
                 SCHEDULE A CONSULTATION
               </button>
             </div>
@@ -190,7 +202,11 @@ function CyberAttackReadiness() {
                 <p className="text-center text-blue-100">
                   Contact our Cyber Readiness Expert
                 </p>
-                <button className="mt-3 bg-orange-500 px-8 py-3 rounded-sm  mx-auto text-lg w-[300px] hover:bg-orange-600 transition-300">
+                <button
+                  type="button"
+                  onClick={() => setIsContactModalOpen(true)}
+                  className="mt-3 bg-orange-500 px-8 py-3 rounded-sm mx-auto text-lg w-[300px] hover:bg-orange-600 transition-300"
+                >
                   Get Started
                 </button>
               </div>
@@ -198,6 +214,12 @@ function CyberAttackReadiness() {
           </div>
         </div>
       </div>
+
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        initialTab="appointment"
+      />
     </div>
   );
 }
